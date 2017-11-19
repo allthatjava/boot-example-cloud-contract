@@ -14,7 +14,7 @@ import brian.boot.example.cloud.contract.consumer.model.Customer;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-@AutoConfigureStubRunner(ids = "brian.boot.example.cloud.contract:boot-example-cloud-contract-producer:+:stubs:8080", workOffline=true)
+@AutoConfigureStubRunner(ids = "brian.boot.example.cloud.contract:producer:+:stubs:8080", workOffline=true)
 public class CustomerServiceTest {
 
 	@Autowired

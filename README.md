@@ -1,9 +1,33 @@
 # Spring Cloud Contract example
 
-### sample project
+### Sample project
 * __Producer__ : Service provider. That will take a Pull Request with Contract from Consumer.
 
 * __Consumer__ : Service consumer. The client application that will user the provider's service.
+
+### Project implement flow
+1. Consumer - App (boot-example-cloud-contract-consumer) create a Test case.
+2. Consumer - App Developer create a contract and send it as __Pull Request__ to the service provider's repository.
+3. Producer - approves the pull request
+4. Producer - run the command 
+```
+./gradlew generateContractTests
+```
+5. Producer - Add base class for Test and add it in build.gradle file
+```
+contracts{
+  baseClassForTests = 'brian.boot.example.cloud.contract.producer.controller.ContractTest'
+}
+```
+6. Producer - Implements code to satisfy the contract
+7. Producer - run the following command to upload '~stub.jar' to __Artifactory__
+	- '~stub.jar' has a WireMock mapping
+8. Consumer - add a annotation on the test case ( + means using the latest version of
+	- @AutoConfigureStubRunner(ids = "{producer artifact groupid}:{producer project name}:{version}:stubs:{test port}", workOffline=true)  
+```
+// So, it will be like this
+@AutoConfigureStubRunner(ids = "brian.boot.example.cloud.contract:producer:+:stubs:8080", workOffline=true)
+```
 
 
 ### References

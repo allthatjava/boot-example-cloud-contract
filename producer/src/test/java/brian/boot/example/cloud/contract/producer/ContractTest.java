@@ -1,4 +1,4 @@
-package brian.boot.example.cloud.contract.producer.controller;
+package brian.boot.example.cloud.contract.producer;
 
 import org.junit.Before;
 

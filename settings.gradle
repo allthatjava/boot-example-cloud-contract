@@ -16,5 +16,5 @@ include 'services:webservice'
 */
 
 rootProject.name = 'boot-example-cloud-contract'
-include 'boot-example-cloud-contract-consumer'
-include 'boot-example-cloud-contract-producer'
+include 'consumer'
+include 'producer'

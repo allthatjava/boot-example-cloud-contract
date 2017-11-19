@@ -47,5 +47,5 @@ dependencyManagement {
 
 // Below has added for Spring Cloud Contract
 contracts{
-	baseClassForTests = 'brian.boot.example.cloud.contract.producer.controller.ContractTest'
+	baseClassForTests = 'brian.boot.example.cloud.contract.producer.ContractTest'
 }
