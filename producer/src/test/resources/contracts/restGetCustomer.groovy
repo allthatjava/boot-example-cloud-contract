@@ -19,6 +19,9 @@ Contract.make{
 				age: 20
 			]
 		)
+        testMatchers {
+            jsonPath('$.age', byCommand('getAge($.custId)'))
+        }
 		headers {
 			header(
 				'Content-Type': value( producer( regex('application/json.*')), consumer('application/json') )	

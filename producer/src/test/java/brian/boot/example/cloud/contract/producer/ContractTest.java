@@ -12,4 +12,12 @@ public class ContractTest {
 	public void setup() {
 		RestAssuredMockMvc.standaloneSetup(new CustomerController());
 	}
+	
+	public int getAge(String custId)
+	{
+		if("12345".equals(custId))
+			return 20;
+		else
+			return 30;
+	}
 }

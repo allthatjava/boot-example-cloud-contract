@@ -51,6 +51,7 @@ Spring Cloud Contract - [https://cloud.spring.io/spring-cloud-contract/](https:/
 		* [Spring Cloud Contract 1.1.4](http://cloud.spring.io/spring-cloud-static/spring-cloud-contract/1.1.4.RELEASE/single/spring-cloud-contract.html)
 		* [Github](https://github.com/spring-cloud/spring-cloud-contract)
 	- Martin Fowler: [https://martinfowler.com/articles/consumerDrivenContracts.html](https://martinfowler.com/articles/consumerDrivenContracts.html)
+	- How to write a Contract : [spring_cloud_contract_advanced](https://github.com/spring-cloud-samples/spring-cloud-contract-samples/blob/master/docs/tutorials/spring_cloud_contract_advanced.adoc)
  
 * Samples
 	- Spring IO Samples : [Here](http://cloud-samples.spring.io/spring-cloud-contract-samples/workshops.html#contract-workshop-introduction-video)
