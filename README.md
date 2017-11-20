@@ -9,26 +9,39 @@
 1. Consumer - App (boot-example-cloud-contract-consumer) create a Test case.
 2. Consumer - App Developer create a contract and send it as __Pull Request__ to the service provider's repository.
 3. Producer - approves the pull request
-4. Producer - run the command 
+4. Producer - run the command to generate Automatic Unit Test for the Contract (This will generate Unit tests under /build/generated-test-sources/contracts )
 ```
 ./gradlew generateContractTests
 ```
-5. Producer - Add base class for Test and add it in build.gradle file
+5. Producer - Create a base class for Test and add the path in build.gradle file
+- Create a base class for test case
+```
+package brian.boot.example.cloud.contract.producer;
+...
+public class ContractTest {
+
+	@Before
+	public void setup() {
+		RestAssuredMockMvc.standaloneSetup(new CustomerController());
+	}
+}
+```
+- Add the following line in the build.gradle
 ```
 contracts{
   baseClassForTests = 'brian.boot.example.cloud.contract.producer.controller.ContractTest'
 }
 ```
-6. Producer - Implements code to satisfy the contract
-7. Producer - run the following command to upload '~stub.jar' to __Artifactory__
+6. Producer - Implements code to satisfy the contract (To pass the generated-test cases)
+7. Producer - run the following command to upload generated '~stub.jar' to __Artifactory__
 	- '~stub.jar' has a WireMock mapping
 8. Consumer - add a annotation on the test case ( + means using the latest version of
-	- @AutoConfigureStubRunner(ids = "{producer artifact groupid}:{producer project name}:{version}:stubs:{test port}", workOffline=true)  
+	- @AutoConfigureStubRunner(ids = "{producer application groupid}:{producer project name}:{version}:stubs:{test port}", workOffline=true)
+	- '+' means the latest version  
 ```
-// So, it will be like this
+// Something like this
 @AutoConfigureStubRunner(ids = "brian.boot.example.cloud.contract:producer:+:stubs:8080", workOffline=true)
 ```
-
 
 ### References
 Spring Cloud Contract - [https://cloud.spring.io/spring-cloud-contract/](https://cloud.spring.io/spring-cloud-contract/)
