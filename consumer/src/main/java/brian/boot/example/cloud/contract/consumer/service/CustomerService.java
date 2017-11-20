@@ -23,9 +23,7 @@ public class CustomerService {
 		return customerRepo.getCustomerInfo(custId);
 	}
 	
-	public Status createCustomerAge(Customer customer) {
-		CustomerResponse response = customerRepo.createCustomer(customer);
-		
-		return response.getStatus();
+	public CustomerResponse createCustomerAge(Customer customer) {
+		return customerRepo.createCustomer(customer);
 	}
 }

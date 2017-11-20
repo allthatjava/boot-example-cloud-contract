@@ -39,10 +39,10 @@ public class CustomerRepo {
 	public CustomerResponse createCustomer(Customer customer) {
 		
 		HttpHeaders headers = new HttpHeaders();
-		headers.setContentType(MediaType.APPLICATION_JSON);
+		headers.setContentType(MediaType.APPLICATION_JSON_UTF8);
 
 		HttpEntity<CustomerResponse> response = restTemplate.postForEntity(
-													"/customer", 
+													url+":"+port+"/customer", 
 													new HttpEntity<>(customer, headers), 
 													CustomerResponse.class);
 		return response.getBody();

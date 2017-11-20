@@ -12,6 +12,7 @@ import org.springframework.cloud.contract.stubrunner.spring.AutoConfigureStubRun
 import org.springframework.test.context.junit4.SpringRunner;
 
 import brian.boot.example.cloud.contract.consumer.model.Customer;
+import brian.boot.example.cloud.contract.consumer.model.CustomerResponse;
 import brian.boot.example.cloud.contract.consumer.model.CustomerResponse.Status;
 
 @RunWith(SpringRunner.class)
@@ -22,15 +23,22 @@ public class CustomerServiceTest {
 	@Autowired
 	private CustomerService service;
 	
-	private Customer testCustomer;
+	private Customer testCustomer1;
+	private Customer testCustomer2;
 	
 	@Before
 	public void setup() {
-		testCustomer = new Customer();
-		testCustomer.setCustId("12345");
-		testCustomer.setCustId("John");
-		testCustomer.setCustId("Smith");
-		testCustomer.setAge(20);
+		testCustomer1 = new Customer();
+		testCustomer1.setCustId("12345");
+		testCustomer1.setFirstName("John");
+		testCustomer1.setLastName("Smith");
+		testCustomer1.setAge(20);
+		
+		testCustomer2 = new Customer();
+		testCustomer2.setCustId("12345");
+		testCustomer2.setFirstName("John");
+		testCustomer2.setLastName("Smith");
+		testCustomer2.setAge(20);
 	}
 	
 	@Test
@@ -44,17 +52,19 @@ public class CustomerServiceTest {
 
 		// Assert
 		assertNotNull(customer);
-		assertEquals("John", customer.getFirstName());
-		assertEquals("Smith", customer.getLastName());
-		assertEquals(20, customer.getAge());
+		assertEquals(testCustomer1.getFirstName(), customer.getFirstName());
+		assertEquals(testCustomer1.getLastName(), customer.getLastName());
+		assertEquals(testCustomer1.getAge(), customer.getAge());
 	}
 	
+	@Test
 	public void testPostCustomer_withValidName_shouldUpdateCustomerName() {
 				
 		// Test
-		Status status = service.createCustomerAge(testCustomer);
+		CustomerResponse response = service.createCustomerAge(testCustomer2);
 
 		// Assert
-		assertEquals( Status.OK, status);
+		assertEquals( Status.OK, response.getStatus());
+		assertEquals( "Customer created", response.getMessage());
 	}
 }
