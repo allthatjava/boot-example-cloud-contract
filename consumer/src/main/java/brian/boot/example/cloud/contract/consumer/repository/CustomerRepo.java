@@ -2,11 +2,15 @@ package brian.boot.example.cloud.contract.consumer.repository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Repository;
 import org.springframework.web.client.RestTemplate;
 
 import brian.boot.example.cloud.contract.consumer.model.Customer;
+import brian.boot.example.cloud.contract.consumer.model.CustomerResponse;
 
 @Repository
 public class CustomerRepo {
@@ -30,5 +34,17 @@ public class CustomerRepo {
 		ResponseEntity<Customer> res = restTemplate.getForEntity(url+":"+port+"/customer/"+custId, Customer.class);
 		
 		return res.getBody();
+	}
+	
+	public CustomerResponse createCustomer(Customer customer) {
+		
+		HttpHeaders headers = new HttpHeaders();
+		headers.setContentType(MediaType.APPLICATION_JSON);
+
+		HttpEntity<CustomerResponse> response = restTemplate.postForEntity(
+													"/customer", 
+													new HttpEntity<>(customer, headers), 
+													CustomerResponse.class);
+		return response.getBody();
 	}
 }

@@ -4,6 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import brian.boot.example.cloud.contract.consumer.model.Customer;
+import brian.boot.example.cloud.contract.consumer.model.CustomerResponse;
+import brian.boot.example.cloud.contract.consumer.model.CustomerResponse.Status;
 import brian.boot.example.cloud.contract.consumer.repository.CustomerRepo;
 
 @Service
@@ -19,5 +21,11 @@ public class CustomerService {
 	public Customer getCustomer(String custId)
 	{
 		return customerRepo.getCustomerInfo(custId);
+	}
+	
+	public Status createCustomerAge(Customer customer) {
+		CustomerResponse response = customerRepo.createCustomer(customer);
+		
+		return response.getStatus();
 	}
 }

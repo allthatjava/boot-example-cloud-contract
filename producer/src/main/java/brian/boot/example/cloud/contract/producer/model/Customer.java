@@ -6,6 +6,8 @@ public class Customer {
 	private String lastName;
 	private int age;
 	
+	private Customer() {}
+	
 	public Customer(String custId, String firstName, String lastName, int age) {
 		super();
 		this.custId = custId;
