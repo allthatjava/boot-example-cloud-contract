@@ -1,9 +1,9 @@
 # Spring Cloud Contract example
 
 ### Sample project
-* __Producer__ : Service provider. That will take a Pull Request with Contract from Consumer.
+* __Producer__ : Service provider. Take a contract by Pull Request from Consumer and implement the feature requested.
 
-* __Consumer__ : Service consumer. The client application that will user the provider's service.
+* __Consumer__ : Service consumer. Send a contract to Producer and test its code with Producer's stub.
 
 ### Project implement flow
 1. Consumer - App (boot-example-cloud-contract-consumer) create a Test case.
@@ -15,9 +15,9 @@
 ```
 5. Producer - Create a base class for Test and add the path in build.gradle file
 - Create a base class for test case
-```
+```java
 package brian.boot.example.cloud.contract.producer;
-...
+
 public class ContractTest {
 
 	@Before
@@ -27,7 +27,7 @@ public class ContractTest {
 }
 ```
 - Add the following line in the build.gradle
-```
+```gradle
 contracts{
   baseClassForTests = 'brian.boot.example.cloud.contract.producer.controller.ContractTest'
 }
@@ -38,7 +38,7 @@ contracts{
 8. Consumer - add a annotation on the test case ( + means using the latest version of
 	- @AutoConfigureStubRunner(ids = "{producer application groupid}:{producer project name}:{version}:stubs:{test port}", workOffline=true)
 	- '+' means the latest version  
-```
+```java
 // Something like this
 @AutoConfigureStubRunner(ids = "brian.boot.example.cloud.contract:producer:+:stubs:8080", workOffline=true)
 ```
@@ -47,7 +47,9 @@ contracts{
 Spring Cloud Contract - [https://cloud.spring.io/spring-cloud-contract/](https://cloud.spring.io/spring-cloud-contract/)
 
 * Documents
-	- Spring Cloud Contract : [Spring Cloud Contract 1.1.4](http://cloud.spring.io/spring-cloud-static/spring-cloud-contract/1.1.4.RELEASE/single/spring-cloud-contract.html)
+	- Spring Cloud Contract
+		* [Spring Cloud Contract 1.1.4](http://cloud.spring.io/spring-cloud-static/spring-cloud-contract/1.1.4.RELEASE/single/spring-cloud-contract.html)
+		* [Github](https://github.com/spring-cloud/spring-cloud-contract)
 	- Martin Fowler: [https://martinfowler.com/articles/consumerDrivenContracts.html](https://martinfowler.com/articles/consumerDrivenContracts.html)
  
 * Samples
