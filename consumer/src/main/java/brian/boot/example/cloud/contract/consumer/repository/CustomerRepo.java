@@ -29,22 +29,22 @@ public class CustomerRepo {
         this.port = port;
     }
 	
-	public Customer getCustomerInfo(String custId) {
+	public ResponseEntity<Customer> getCustomerInfo(String custId) {
 		
-		ResponseEntity<Customer> res = restTemplate.getForEntity(url+":"+port+"/customer/"+custId, Customer.class);
-		
-		return res.getBody();
+		return restTemplate.getForEntity(url+":"+port+"/customer/"+custId, Customer.class);
 	}
 	
-	public CustomerResponse createCustomer(Customer customer) {
+	public ResponseEntity<CustomerResponse> createCustomer(Customer customer) {
 		
 		HttpHeaders headers = new HttpHeaders();
 		headers.setContentType(MediaType.APPLICATION_JSON_UTF8);
 
-		HttpEntity<CustomerResponse> response = restTemplate.postForEntity(
-													url+":"+port+"/customer", 
-													new HttpEntity<>(customer, headers), 
-													CustomerResponse.class);
-		return response.getBody();
+		return restTemplate.postForEntity(url + ":" + port + "/customer", new HttpEntity<>(customer, headers),
+				CustomerResponse.class);
+	}
+	
+	public ResponseEntity<Customer> getCustomerInfoFromMultipleContract(String custId) {
+		
+		return restTemplate.getForEntity(url+":"+port+"/multiple-contract-customer/"+custId, Customer.class);
 	}
 }

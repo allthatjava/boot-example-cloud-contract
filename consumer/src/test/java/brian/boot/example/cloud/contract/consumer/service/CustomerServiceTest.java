@@ -2,6 +2,7 @@ package brian.boot.example.cloud.contract.consumer.service;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -54,11 +55,22 @@ public class CustomerServiceTest {
 		assertNotNull(customer);
 		assertEquals(testCustomer1.getFirstName(), customer.getFirstName());
 		assertEquals(testCustomer1.getLastName(), customer.getLastName());
-		assertEquals(testCustomer1.getAge(), customer.getAge());
+		assertTrue(customer.getAge()==20 || customer.getAge()==30 );	// Contract says this value can be 20 or 30
 	}
 	
 	@Test
 	public void testPostCustomer_withValidName_shouldUpdateCustomerName() {
+				
+		// Test
+		CustomerResponse response = service.createCustomerAge(testCustomer2);
+
+		// Assert
+		assertEquals( Status.OK, response.getStatus());
+		assertEquals( "Customer created", response.getMessage());
+	}
+	
+	@Test
+	public void testGetCustomer_withInValidCustId_shouldReturnHTTP_BAD_REQUEST_400() {
 				
 		// Test
 		CustomerResponse response = service.createCustomerAge(testCustomer2);

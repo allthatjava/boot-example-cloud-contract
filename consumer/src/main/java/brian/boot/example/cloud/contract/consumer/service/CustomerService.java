@@ -20,10 +20,10 @@ public class CustomerService {
 	
 	public Customer getCustomer(String custId)
 	{
-		return customerRepo.getCustomerInfo(custId);
+		return customerRepo.getCustomerInfo(custId).getBody();
 	}
 	
 	public CustomerResponse createCustomerAge(Customer customer) {
-		return customerRepo.createCustomer(customer);
+		return customerRepo.createCustomer(customer).getBody();
 	}
 }

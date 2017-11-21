@@ -3,6 +3,11 @@ package contracts
 import org.springframework.cloud.contract.spec.Contract
 
 Contract.make{
+	description('''
+		POST method test. Anything within triple quote(") will be considered as literal.
+
+		- Implemented code is in CustomerController.java
+''')
 	
 	request{
 		method 'POST'
@@ -19,7 +24,6 @@ Contract.make{
 			header( 'Content-Type': 'application/json;charset=UTF-8' )
 		}
 	}
-	
 	response{
 		status 200
 		body("""
@@ -32,5 +36,4 @@ Contract.make{
 			header( 'Content-Type': 'application/json;charset=UTF-8' )
 		}
 	}
-	
 }

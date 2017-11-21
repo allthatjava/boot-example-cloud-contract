@@ -8,6 +8,32 @@
 ### Project implement flow
 1. Consumer - App (boot-example-cloud-contract-consumer) create a Test case.
 2. Consumer - App Developer create a contract and send it as __Pull Request__ to the service provider's repository.
+	- Contract is written in Groovy
+```groovy
+import org.springframework.cloud.contract.spec.Contract
+
+Contract.make{
+	request{
+		method 'GET'
+		url value( consumer(regex('/customer/[0-9]{5}')) )
+	}
+	response{
+		status 200
+		body(
+			custId: '12345',
+			firstName: 'John',
+			lastName: 'Smith',
+			age: $(producer(regex('(20|30)')))
+		)
+		headers {
+			header(
+				'Content-Type': value( producer( regex('application/json.*')), consumer('application/json') )	
+			)
+		}
+	}
+	
+}
+```
 3. Producer - approves the pull request
 4. Producer - run the command to generate Automatic Unit Test for the Contract (This will generate Unit tests under /build/generated-test-sources/contracts )
 ```
@@ -36,7 +62,7 @@ contracts{
 7. Producer - run the following command to upload generated '~stub.jar' to __Artifactory__
 	- '~stub.jar' has a WireMock mapping
 8. Consumer - add a annotation on the test case ( + means using the latest version of
-	- @AutoConfigureStubRunner(ids = "{producer application groupid}:{producer project name}:{version}:stubs:{test port}", workOffline=true)
+	- @AutoConfigureStubRunner(ids = "{producer application groupid}:{producer artifact id}:{version}:stubs:{test port}", workOffline=true)
 	- '+' means the latest version  
 ```java
 // Something like this
@@ -62,6 +88,3 @@ Spring Cloud Contract - [https://cloud.spring.io/spring-cloud-contract/](https:/
 * Video
 	- [https://youtu.be/iyNzYOcuU4I](https://youtu.be/iyNzYOcuU4I)   <-- part of the Spring IO Samples document
 	- [https://youtu.be/sAAklvxmPmk](https://youtu.be/sAAklvxmPmk)    <--- recommended from above video
-	
-* Optional REST service examples
-	- [RESTFul Service examples](http://www.springboottutorial.com/creating-rest-service-with-spring-boot)
