@@ -6,22 +6,17 @@ Contract.make{
 	
 	request{
 		method 'GET'
-		url value( consumer(regex('/customer/[0-9]{5}')), producer('/customer/12345') )
+		url value( consumer(regex('/customer/[0-9]{5}')) )
 	}
 	
 	response{
 		status 200
 		body(
-			[
-				custId: '12345',
-				firstName: 'John',
-				lastName: 'Smith',
-				age: 20
-			]
+			custId: '12345',
+			firstName: 'John',
+			lastName: 'Smith',
+			age: $(producer(regex('(20|30)')))
 		)
-        testMatchers {
-            jsonPath('$.age', byCommand('getAge($.custId)'))
-        }
 		headers {
 			header(
 				'Content-Type': value( producer( regex('application/json.*')), consumer('application/json') )	
