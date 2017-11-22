@@ -20,8 +20,9 @@ public class CustomerRepoTest {
 	CustomerRepo repo;
 	
 	/**
-	 * From the contract restGetMultipleCustomerContract.groovy, only one test case is tested for the failing case
+	 * For the contract restGetMultipleCustomerContract.groovy
 	 * 
+	 * only one test case out of 3 test cases is implemented for the failing case
 	 */
 	@Test
 	public void testCreateCustomer_withInvalidCustId_shouldReturnBAD_REQUEST_400() {

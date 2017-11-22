@@ -42,6 +42,9 @@ public class CustomerServiceTest {
 		testCustomer2.setAge(20);
 	}
 	
+	/**
+	 * For the contract - restGetCustomer.groovy
+	 */
 	@Test
 	public void testGetCustomer_withValidCustId_shouldReturnCustomer() {
 		
@@ -58,19 +61,11 @@ public class CustomerServiceTest {
 		assertTrue(customer.getAge()==20 || customer.getAge()==30 );	// Contract says this value can be 20 or 30
 	}
 	
+	/**
+	 * For the contract - restPostCustomer.groovy
+	 */
 	@Test
 	public void testPostCustomer_withValidName_shouldUpdateCustomerName() {
-				
-		// Test
-		CustomerResponse response = service.createCustomerAge(testCustomer2);
-
-		// Assert
-		assertEquals( Status.OK, response.getStatus());
-		assertEquals( "Customer created", response.getMessage());
-	}
-	
-	@Test
-	public void testGetCustomer_withInValidCustId_shouldReturnHTTP_BAD_REQUEST_400() {
 				
 		// Test
 		CustomerResponse response = service.createCustomerAge(testCustomer2);
