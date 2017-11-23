@@ -2,9 +2,8 @@ package brian.boot.example.cloud.contract.producer;
 
 import org.junit.Before;
 
-import com.jayway.restassured.module.mockmvc.RestAssuredMockMvc;
-
 import brian.boot.example.cloud.contract.producer.controller.CustomerController;
+import io.restassured.module.mockmvc.RestAssuredMockMvc;
 
 public abstract class ContractTest {
 
