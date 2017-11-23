@@ -9,16 +9,22 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
 import org.springframework.cloud.contract.stubrunner.spring.AutoConfigureStubRunner;
+import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import brian.boot.example.cloud.contract.consumer.model.Customer;
 import brian.boot.example.cloud.contract.consumer.model.CustomerResponse;
 import brian.boot.example.cloud.contract.consumer.model.CustomerResponse.Status;
 
+//@RunWith(SpringRunner.class)
+//@SpringBootTest
+//@AutoConfigureStubRunner(ids = "brian.boot.example.cloud.contract:producer:+:stubs:8080", workOffline=true)
 @RunWith(SpringRunner.class)
-@SpringBootTest
+@SpringBootTest(webEnvironment = WebEnvironment.MOCK)
 @AutoConfigureStubRunner(ids = "brian.boot.example.cloud.contract:producer:+:stubs:8080", workOffline=true)
+@DirtiesContext
 public class CustomerServiceTest {
 
 	@Autowired
