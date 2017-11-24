@@ -1,19 +1,23 @@
 buildscript {
 	ext {
 		springBootVersion = '1.5.8.RELEASE'
-		springCloudContractVersion = '1.2.0.RELEASE'
+		springCloudContractVersion = '1.2.0.RELEASE'		// Added for Spring Cloud Contract
 	}
 	repositories {
 		mavenCentral()
 	}
 	dependencies {
 		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+		classpath "io.spring.gradle:dependency-management-plugin:1.0.2.RELEASE"
+		classpath "org.springframework.cloud:spring-cloud-contract-gradle-plugin:${springCloudContractVersion}"	// Added for Spring Cloud Contract
 	}
 }
 
 apply plugin: 'java'
 apply plugin: 'eclipse'
 apply plugin: 'org.springframework.boot'
+apply plugin: "io.spring.dependency-management"
+apply plugin: 'spring-cloud-contract'	// Added for Spring Cloud Contract
 apply plugin: 'maven'
 
 group = 'brian.boot.example.cloud.contract'
@@ -33,13 +37,12 @@ dependencies {
 	compile('org.springframework.boot:spring-boot-starter-web')
 	
 	testCompile('org.springframework.boot:spring-boot-starter-test')
-	
-	testCompile("org.springframework.cloud:spring-cloud-stream-test-support")
-	testCompile('org.springframework.cloud:spring-cloud-starter-contract-stub-runner')
+	testCompile('org.springframework.cloud:spring-cloud-starter-contract-stub-runner:1.2.0.RELEASE') 		// Added for Spring Cloud Contract
 }
 
 dependencyManagement {
 	imports {
 		mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
+        mavenBom "org.springframework.cloud:spring-cloud-contract-dependencies:${springCloudContractVersion}"	// Added for Spring Cloud Contract	
 	}
 }
