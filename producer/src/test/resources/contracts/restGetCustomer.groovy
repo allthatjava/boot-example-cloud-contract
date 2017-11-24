@@ -16,7 +16,7 @@ Contract.make{
 	response{
 		status 200
 		body(
-			custId: '12345',
+			custId: "${fromRequest().path(1)}",
 			firstName: 'John',
 			lastName: 'Smith',
 			age: $(producer(regex('(20|30)')))	// Same as above, either number will be chosen randomly for response data for test case.
