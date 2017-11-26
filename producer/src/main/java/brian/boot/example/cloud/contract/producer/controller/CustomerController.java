@@ -23,7 +23,7 @@ public class CustomerController {
 	@RequestMapping( value="/customer/{custId}", method = RequestMethod.GET )
 	public Customer getCustomer(@PathVariable("custId") String custId){
 		
-		return new Customer("12345", "John", "Smith", 20);
+		return new Customer( custId, "John", "Smith", 20);
 	}
 	
 	@RequestMapping( value="/customer", method = RequestMethod.POST)
