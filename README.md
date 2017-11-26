@@ -17,7 +17,23 @@
 
 ### Project implementation flow
 1. Consumer - creates a Test case. (under src/test/java ) 
-2. Consumer - creates a contract(*.groovy) and send a Pull Request to the service provider's repository. Contracts must be dropped under the src/test/resources/contracts in producer's project. That is the default directory where spring-cloud-contract picks up contracts. If you want to change, you can change in Gradle script.
+```gradle
+buildscript{
+	ext{ springCloudContractVersion = '1.2.0.RELEASE' }
+	dependencies{
+		classpath "org.springframework.cloud:spring-cloud-contract-gradle-plugin:${springCloudContractVersion}"
+	}
+}
+dependencies {
+	testCompile('org.springframework.cloud:spring-cloud-starter-contract-stub-runner')
+}
+dependenciesManagement {
+	imports {
+		mavenBom "org.springframework.cloud:spring-cloud-contract-dependencies:${springCloudContractVersion}"
+	}
+}
+```
+2. Consumer - creates a contract(*.groovy) and send a Pull Request to the service provider's repository. Contracts must be dropped under the src/test/resources/contracts in producer's project. That is the default directory where spring-cloud-contract picks up contracts. If you want to change, you can change in Gradle script. (src/test/resources/contracts is the default base directories. You can separate contracts by consumers such as src/test/resources/contracts/com/google/consumer1 )
 ```groovy
 import org.springframework.cloud.contract.spec.Contract
 
@@ -53,11 +69,17 @@ Contract.make{
 ```java
 package brian.boot.example.cloud.contract.producer;
 
-public class ContractTest {
+@RunWith(SpringRunner.class)
+@SpringBootTest(classes={Application.class})
+public abstract class ContractTest {
+
+	// Anything that need for the test can be here
+	@Autowired CustomerService service; 
 
 	@Before
 	public void setup() {
-		RestAssuredMockMvc.standaloneSetup(new CustomerController());	// CustomerController has end points to test
+		// CustomerController has end points to test
+		RestAssuredMockMvc.standaloneSetup(new CustomerController(service));		
 	}
 }
 ```
@@ -65,6 +87,12 @@ public class ContractTest {
 ```gradle
 contracts{
   baseClassForTests = 'brian.boot.example.cloud.contract.producer.controller.ContractTest'
+}
+// or to have separate base test class for contracts
+contracts{
+  baseClassMappings {
+	  baseClassMapping('.*producer.*', 'brian.boot.exmaple.cloud.producer.ProducerBase')
+  }
 }
 ```
 - Run the following command to generate test cases with the above base test class
@@ -102,7 +130,7 @@ contracts{
 	- Don't put the port if you want to test in random port
 	- change the workOffline option to false if stub should be pulled from external repository 
 ```java
-@AutoConfigureStubRunner(ids = "brian.boot.example.cloud.contract:producer:+:stubs:8080", workOffline=true)
+@AutoConfigureStubRunner(ids = "brian.boot.example.cloud.contract:producer:+:stubs:9999", workOffline=true)
 ```
 
 ### References
