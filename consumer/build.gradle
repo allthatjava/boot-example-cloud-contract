@@ -1,7 +1,6 @@
 buildscript {
 	ext {
 		springBootVersion = '1.5.8.RELEASE'
-		springCloudContractVersion = '1.2.0.RELEASE'		// Added for Spring Cloud Contract
 	}
 	repositories {
 		mavenCentral()
@@ -27,6 +26,7 @@ repositories {
 
 ext {
 	springCloudVersion = 'Dalston.SR4'
+	springCloudContractVersion = '1.2.0.RELEASE'		// Added for Spring Cloud Contract
 }
 
 dependencies {

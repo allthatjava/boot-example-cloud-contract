@@ -12,6 +12,9 @@ Contract.make{
 	request{
 		method 'POST'
 		url '/customer'
+		headers {
+			header( 'Content-Type': 'application/json;charset=UTF-8' )
+		}
 		body("""
 		{
 			"custId": "12345",
@@ -20,20 +23,17 @@ Contract.make{
 			"age": 20
 		}
 		""")
-		headers {
-			header( 'Content-Type': 'application/json;charset=UTF-8' )
-		}
 	}
 	response{
 		status 200
+		headers {
+			header( 'Content-Type': 'application/json;charset=UTF-8' )
+		}
 		body("""
 		{
 			"status": "OK",
 			"message": "Customer created"
 		}
 		""")
-		headers {
-			header( 'Content-Type': 'application/json;charset=UTF-8' )
-		}
 	}
 }

@@ -15,16 +15,21 @@ Contract.make{
 	
 	response{
 		status 200
-		body(
-			custId: "${fromRequest().path(1)}",
-			firstName: 'John',
-			lastName: 'Smith',
-			age: $(producer(regex('(20|30)')))	// Same as above, either number will be chosen randomly for response data for test case.
-		)
 		headers {
 			header(
 				'Content-Type': value( producer( regex('application/json.*')), consumer('application/json') )	
 			)
 		}
+		body(
+			custId: "${fromRequest().path(1)}",
+			firstName: 'John',
+			lastName: 'Smith',
+			age: $(producer(regex('(20|30)'))),	// Same as above, either number will be chosen randomly for response data for test case.
+			additional: [
+				interest: 'Golf',
+				drink: true,
+				smoke: false
+			]
+		)
 	}
 }

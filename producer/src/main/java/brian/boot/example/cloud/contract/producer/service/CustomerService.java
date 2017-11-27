@@ -5,6 +5,7 @@ import java.util.regex.Pattern;
 
 import org.springframework.stereotype.Service;
 
+import brian.boot.example.cloud.contract.producer.model.Additional;
 import brian.boot.example.cloud.contract.producer.model.Customer;
 import brian.boot.example.cloud.contract.producer.model.CustomerResponse;
 
@@ -12,7 +13,8 @@ import brian.boot.example.cloud.contract.producer.model.CustomerResponse;
 public class CustomerService {
 	
 	public Customer getCustomer(String custId) {
-		return new Customer( custId, "John", "Smith", 20);
+		
+		return new Customer( custId, "John", "Smith", 20, new Additional("Golf", true, false));
 	}
 
 	public CustomerResponse createCustomer(Customer customer) {
@@ -35,6 +37,6 @@ public class CustomerService {
 		else if ( "456".equals(custId))
 			age = 30;
 		
-		return new Customer( custId, "John", "Smith", age);
+		return new Customer( custId, "John", "Smith", age, new Additional("Golf", true, false));
 	}
 }

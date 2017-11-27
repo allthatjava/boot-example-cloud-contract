@@ -5,17 +5,27 @@ public class Customer {
 	private String firstName;
 	private String lastName;
 	private int age;
+	private Additional additional;
 	
 	private Customer() {}
 	
-	public Customer(String custId, String firstName, String lastName, int age) {
+	public Customer(String custId, String firstName, String lastName, int age, Additional additional) {
 		super();
 		this.custId = custId;
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.age = age;
+		this.additional = additional;
 	}
 	
+	public Additional getAdditional() {
+		return additional;
+	}
+
+	public void setAdditional(Additional additional) {
+		this.additional = additional;
+	}
+
 	public String getCustId() {
 		return custId;
 	}

@@ -15,17 +15,17 @@ import org.springframework.cloud.contract.spec.Contract
 		}
 		response{
 			status 200
+			headers {
+				header(
+					'Content-Type': value( producer( regex('application/json.*')), consumer('application/json') )	
+				)
+			}
 			body(
 				custId: '123',
 				firstName: 'John',
 				lastName: 'Smith',
 				age: 20						// For custId 123, response must have age 20.
 			)
-			headers {
-				header(
-					'Content-Type': value( producer( regex('application/json.*')), consumer('application/json') )	
-				)
-			}
 		}
 	},
 	Contract.make{
@@ -35,17 +35,17 @@ import org.springframework.cloud.contract.spec.Contract
 		}
 		response{
 			status 200
+			headers {
+				header(
+					'Content-Type': value( producer( regex('application/json.*')), consumer('application/json') )
+				)
+			}
 			body(
 				custId: '456',
 				firstName: 'John',
 				lastName: 'Smith',
 				age: 30						// For custId 456, response must be have age 30.
 			)
-			headers {
-				header(
-					'Content-Type': value( producer( regex('application/json.*')), consumer('application/json') )
-				)
-			}
 		}
 	},
 	Contract.make{

@@ -11,9 +11,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
 import org.springframework.cloud.contract.stubrunner.spring.AutoConfigureStubRunner;
-import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import brian.boot.example.cloud.contract.consumer.model.Additional;
 import brian.boot.example.cloud.contract.consumer.model.Customer;
 import brian.boot.example.cloud.contract.consumer.model.CustomerResponse;
 import brian.boot.example.cloud.contract.consumer.model.CustomerResponse.Status;
@@ -61,6 +61,12 @@ public class CustomerServiceTest {
 		assertEquals(testCustomer1.getFirstName(), customer.getFirstName());
 		assertEquals(testCustomer1.getLastName(), customer.getLastName());
 		assertTrue(customer.getAge()==20 || customer.getAge()==30 );	// Contract says this value can be 20 or 30
+		
+		assertNotNull(customer.getAdditional());
+		Additional additional = customer.getAdditional();
+		assertEquals("Golf", additional.getInterest());
+		assertEquals(true, additional.isDrink());
+		assertEquals(false, additional.isSmoke());
 	}
 	
 	/**
