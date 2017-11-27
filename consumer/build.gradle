@@ -9,16 +9,12 @@ buildscript {
 	dependencies {
 		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
 		classpath "io.spring.gradle:dependency-management-plugin:1.0.2.RELEASE"
-		classpath "org.springframework.cloud:spring-cloud-contract-gradle-plugin:${springCloudContractVersion}"	// Added for Spring Cloud Contract
 	}
 }
 
 apply plugin: 'java'
 apply plugin: 'eclipse'
 apply plugin: 'org.springframework.boot'
-apply plugin: "io.spring.dependency-management"
-apply plugin: 'spring-cloud-contract'	// Added for Spring Cloud Contract
-apply plugin: 'maven'
 
 group = 'brian.boot.example.cloud.contract'
 version = '0.0.1-SNAPSHOT'
