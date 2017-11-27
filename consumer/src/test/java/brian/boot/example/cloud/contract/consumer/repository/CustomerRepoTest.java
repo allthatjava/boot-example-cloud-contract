@@ -9,32 +9,22 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
 import org.springframework.cloud.contract.stubrunner.spring.AutoConfigureStubRunner;
 import org.springframework.http.HttpStatus;
-import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.web.client.HttpClientErrorException;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = WebEnvironment.MOCK)
 @AutoConfigureStubRunner(ids = "brian.boot.example.cloud.contract:producer:+:stubs:9999", workOffline=true)
-@DirtiesContext
-// Port number not set - Using random port for testing
 // Used specific version 0.0.1-SNAPSHOT - if test must be done against latest, put + symbol instead of the version
 public class CustomerRepoTest {
 
 	@Autowired
 	CustomerRepo repo;
 	
-//	@Value("${stubrunner.runningstubs.producer.port}") int producerPort;
-//
-//	@Before
-//	public void setupPort() {
-//		repo.port = producerPort;
-//	}
-	
 	/**
 	 * For the contract restGetMultipleCustomerContract.groovy
 	 * 
-	 * only one test case out of 3 test cases is implemented for the failing case
+	 * only one test case out of 3 test cases is implemented for the failing case (Because I am lazy :'( )
 	 */
 	@Test
 	public void testCreateCustomer_withInvalidCustId_shouldReturnBAD_REQUEST_400() {

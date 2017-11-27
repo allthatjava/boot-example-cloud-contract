@@ -18,13 +18,9 @@ import brian.boot.example.cloud.contract.consumer.model.Customer;
 import brian.boot.example.cloud.contract.consumer.model.CustomerResponse;
 import brian.boot.example.cloud.contract.consumer.model.CustomerResponse.Status;
 
-//@RunWith(SpringRunner.class)
-//@SpringBootTest
-//@AutoConfigureStubRunner(ids = "brian.boot.example.cloud.contract:producer:+:stubs:8080", workOffline=true)
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = WebEnvironment.MOCK)
 @AutoConfigureStubRunner(ids = "brian.boot.example.cloud.contract:producer:+:stubs:9999", workOffline=true)
-@DirtiesContext
 public class CustomerServiceTest {
 
 	@Autowired
