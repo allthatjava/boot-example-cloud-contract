@@ -38,12 +38,27 @@ dependenciesManagement {
 import org.springframework.cloud.contract.spec.Contract
 
 Contract.make{
+//	ignore() 		// If this contract need to be ignored, ignore() can be used
+	description('''
+		This 'description' is optional. Often recommended to have the test case explained with 'given...when...then...' format.
+''')
 	request{
 		method 'GET'
-		url value( consumer(regex('/customer/[0-9]{5}')) )
+		urlPath $( consumer(regex('/customer/[0-9]{5}')) ) 
+//		urlPath $( '/abc/' ) {			// urlPath can have queryParameters to pass the parameters
+//			queryParameters {
+//				parameter 'limit': 100
+//				parameter 'gender': value(consumer(containing("[mf]")), producer('mf'))
+//			}
+//		}
+		body(			// Bodycan be included in the request.
+		)
+		multipart(		// Multipart can be included in the request. See the Spring Cloud Contract document for detail
+		)
 	}
 	response{
-		status 200
+		status 200						// Status is 'must' attribute in the response
+//		body(file("response.json"))		// If JSON file can be used for contract. In this case, file must be in the same directory.
 		body(
 			custId: '12345',
 			firstName: 'John',
@@ -52,7 +67,7 @@ Contract.make{
 		)
 		headers {
 			header(
-				'Content-Type': value( producer( regex('application/json.*')), consumer('application/json') )	
+				'Content-Type': $( producer( regex('application/json.*')), consumer('application/json') )	
 			)
 		}
 	}
@@ -132,6 +147,24 @@ contracts{
 ```java
 @AutoConfigureStubRunner(ids = "brian.boot.example.cloud.contract:producer:+:stubs:9999", workOffline=true)
 ```
+
+9.Publishing to Artifactory (Optional)
+	- To include ~stubs.jar to be published to Artifactory, following additional script is needed in build.gradle
+```
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            artifact verifierStubsJar {
+                classifier 'stubs'
+            }
+        }
+    }
+}
+```
+
+### Aditional Note
+* optional() can be use for the optional fields
+	* NOTE: Consumer(Stub) side can have optional() only in __request__ and Producer(Test) side can have optional() only in __response__.
 
 ### References
 Spring Cloud Contract - [https://cloud.spring.io/spring-cloud-contract/](https://cloud.spring.io/spring-cloud-contract/)

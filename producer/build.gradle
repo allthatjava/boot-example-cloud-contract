@@ -53,3 +53,13 @@ dependencyManagement {
 contracts{
 	baseClassForTests = 'brian.boot.example.cloud.contract.producer.ContractTest'
 }
+
+publishing {
+	publications {
+		mavenJava(MavenPublication) {
+			artifact verifierStubsJar {
+				classifier 'stubs'
+			}
+		}
+	}
+}
