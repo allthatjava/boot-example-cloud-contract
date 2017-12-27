@@ -42,3 +42,6 @@ dependencyManagement {
         mavenBom "org.springframework.cloud:spring-cloud-contract-dependencies:${springCloudContractVersion}"	// Added for Spring Cloud Contract	
 	}
 }
+
+// Default
+defaultTasks 'clean', 'build'

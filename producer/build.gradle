@@ -19,7 +19,7 @@ apply plugin: 'org.springframework.boot'
 // Added for Spring Cloud Contract
 apply plugin: "io.spring.dependency-management"
 apply plugin: 'spring-cloud-contract'
-apply plugin: 'maven'
+apply plugin: 'maven-publish'
 
 group = 'brian.boot.example.cloud.contract'
 version = '0.0.1-SNAPSHOT'
@@ -63,3 +63,6 @@ publishing {
 		}
 	}
 }
+
+// Default 
+defaultTasks 'clean', 'build', 'publishToMavenLocal'
