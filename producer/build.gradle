@@ -71,3 +71,6 @@ publishing {
 		}
 	}
 }
+
+// Default 
+defaultTasks 'clean', 'build', 'publishToMavenLocal'
