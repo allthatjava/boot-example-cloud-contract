@@ -1,4 +1,4 @@
-package contracts
+package contracts.consumer
 
 import org.springframework.cloud.contract.spec.Contract
 
@@ -11,7 +11,7 @@ import org.springframework.cloud.contract.spec.Contract
 ''')
 		request{
 			method 'GET'
-			url $(c('/multiple-contract-customer/123'))
+			url value(c('/multiple-contract-customer/123'))
 		}
 		response{
 			status 200
@@ -31,7 +31,7 @@ import org.springframework.cloud.contract.spec.Contract
 	Contract.make{
 		request{
 			method 'GET'
-			url $(c('/multiple-contract-customer/456'))
+			url value(consumer('/multiple-contract-customer/456'))
 		}
 		response{
 			status 200
@@ -56,7 +56,7 @@ import org.springframework.cloud.contract.spec.Contract
 		''')
 		request{
 			method 'GET'
-			url $(c('/multiple-contract-customer/abc'))
+			url value(consumer('/multiple-contract-customer/abc'))
 		}
 		response{
 			status 400

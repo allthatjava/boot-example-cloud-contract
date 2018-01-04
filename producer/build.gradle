@@ -19,7 +19,7 @@ apply plugin: 'org.springframework.boot'
 // Added for Spring Cloud Contract
 apply plugin: "io.spring.dependency-management"
 apply plugin: 'spring-cloud-contract'
-apply plugin: 'maven'
+apply plugin: 'maven-publish'
 
 group = 'brian.boot.example.cloud.contract'
 version = '0.0.1-SNAPSHOT'
@@ -38,6 +38,8 @@ dependencies {
 	compile('org.springframework.boot:spring-boot-starter-web')
 	compile('org.apache.httpcomponents:httpclient:4.5.3')
 	
+	compileOnly('org.projectlombok:lombok')
+	
 	testCompile('org.springframework.boot:spring-boot-starter-test')
 	testCompile('org.springframework.cloud:spring-cloud-starter-contract-verifier')		// Added for Spring Cloud Contract// https://mvnrepository.com/artifact/io.rest-assured/rest-assured
 }
@@ -53,6 +55,12 @@ dependencyManagement {
 contracts{
 	baseClassForTests = 'brian.boot.example.cloud.contract.producer.ContractTest'
 }
+// Or manually map the contract and base class 
+//contracts{
+//	baseClassMappings {
+//		baseClassMapping('.*consumer.*', 'brian.boot.example.cloud.contract.producer.ContractTest')
+//	}
+//}
 
 publishing {
 	publications {

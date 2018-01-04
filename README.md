@@ -162,7 +162,7 @@ publishing {
 }
 ```
 
-### Aditional Note
+### Additional Note
 * optional() can be use for the optional fields
 	* NOTE: Consumer(Stub) side can have optional() only in __request__ and Producer(Test) side can have optional() only in __response__.
 

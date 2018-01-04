@@ -8,6 +8,16 @@ public class Customer {
 	private int age;
 	private Additional additional;
 	
+	private Customer(){};
+	
+	public Customer(String custId, String firstName, String lastName, int age) {
+		super();
+		this.custId = custId;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.age = age;
+	}
+	
 	public Additional getAdditional() {
 		return additional;
 	}

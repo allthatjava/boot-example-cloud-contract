@@ -1,4 +1,4 @@
-package contracts
+package contracts.consumer
 
 import org.springframework.cloud.contract.spec.Contract
 
@@ -10,21 +10,18 @@ Contract.make{
 ''')
 	request{
 		method 'GET'
-		url value( consumer(regex('/customer/[0-9]{5}')) )	// Regex pattern will generate random data for test case every time.
+		url value(regex('/customer/[0-9]{5}'))	// Regex pattern will generate random data for test case every time.
 	}
-	
 	response{
 		status 200
 		headers {
-			header(
-				'Content-Type': value( producer( regex('application/json.*')), consumer('application/json') )	
-			)
+			header( 'Content-Type': $(regex('application/json.*')) )
 		}
 		body(
 			custId: "${fromRequest().path(1)}",
 			firstName: 'John',
 			lastName: 'Smith',
-			age: $(producer(regex('(20|30)'))),	// Same as above, either number will be chosen randomly for response data for test case.
+			age: 20,
 			additional: [
 				interest: 'Golf',
 				drink: true,

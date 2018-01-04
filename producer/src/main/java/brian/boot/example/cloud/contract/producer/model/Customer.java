@@ -5,16 +5,18 @@ public class Customer {
 	private String firstName;
 	private String lastName;
 	private int age;
+	private String phoneNo;
 	private Additional additional;
 	
 	private Customer() {}
 	
-	public Customer(String custId, String firstName, String lastName, int age, Additional additional) {
+	public Customer(String custId, String firstName, String lastName, int age, String phoneNumber, Additional additional) {
 		super();
 		this.custId = custId;
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.age = age;
+		this.phoneNo = phoneNumber;
 		this.additional = additional;
 	}
 	
@@ -44,6 +46,14 @@ public class Customer {
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
 	}
+	public String getPhoneNo() {
+		return phoneNo;
+	}
+
+	public void setPhoneNo(String phoneNo) {
+		this.phoneNo = phoneNo;
+	}
+
 	public int getAge() {
 		return age;
 	}

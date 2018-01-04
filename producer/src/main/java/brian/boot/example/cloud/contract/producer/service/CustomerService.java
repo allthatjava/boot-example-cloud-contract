@@ -14,7 +14,7 @@ public class CustomerService {
 	
 	public Customer getCustomer(String custId) {
 		
-		return new Customer( custId, "John", "Smith", 20, new Additional("Golf", true, false));
+		return new Customer( custId, "John", "Smith", 20, "123-456-7890", new Additional("Golf", true, false));
 	}
 
 	public CustomerResponse createCustomer(Customer customer) {
@@ -30,13 +30,12 @@ public class CustomerService {
         if( !matcher.matches() )
         	throw new IllegalArgumentException("Customer ID is not numeric type");
 		
-		
 		int age = -1;
 		if( "123".equals(custId))
 			age = 20;
 		else if ( "456".equals(custId))
 			age = 30;
 		
-		return new Customer( custId, "John", "Smith", age, new Additional("Golf", true, false));
+		return new Customer( custId, "John", "Smith", age, "123-456-7890", new Additional("Golf", true, false));
 	}
 }

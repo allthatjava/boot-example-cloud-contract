@@ -4,7 +4,6 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
-import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +17,12 @@ import brian.boot.example.cloud.contract.consumer.model.Customer;
 import brian.boot.example.cloud.contract.consumer.model.CustomerResponse;
 import brian.boot.example.cloud.contract.consumer.model.CustomerResponse.Status;
 
+/**
+ * This test uses fixed port number 9999 for StubRunner. The port and url are picked up from application.yml and they are used by CustomerService. 
+ * 
+ * @author hyen.heo
+ *
+ */
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = WebEnvironment.MOCK)
 @AutoConfigureStubRunner(ids = "brian.boot.example.cloud.contract:producer:+:stubs:9999", workOffline=true)
@@ -26,23 +31,7 @@ public class CustomerServiceTest {
 	@Autowired
 	private CustomerService service;
 	
-	private Customer testCustomer1;
-	private Customer testCustomer2;
-	
-	@Before
-	public void setup() {
-		testCustomer1 = new Customer();
-		testCustomer1.setCustId("12345");
-		testCustomer1.setFirstName("John");
-		testCustomer1.setLastName("Smith");
-		testCustomer1.setAge(20);
-		
-		testCustomer2 = new Customer();
-		testCustomer2.setCustId("12345");
-		testCustomer2.setFirstName("John");
-		testCustomer2.setLastName("Smith");
-		testCustomer2.setAge(20);
-	}
+	private static final String TEST_CUST_ID = "12345";
 	
 	/**
 	 * For the contract - restGetCustomer.groovy
@@ -51,10 +40,10 @@ public class CustomerServiceTest {
 	public void testGetCustomer_withValidCustId_shouldReturnCustomer() {
 		
 		// Given 
-		String testCustId = "12345";
+		Customer testCustomer1 = new Customer(TEST_CUST_ID, "John", "Smith", 20);
 		
 		// Test
-		Customer customer = service.getCustomer(testCustId);
+		Customer customer = service.getCustomer(TEST_CUST_ID);		// Service is provided from Producer
 
 		// Assert
 		assertNotNull(customer);
@@ -75,6 +64,9 @@ public class CustomerServiceTest {
 	@Test
 	public void testPostCustomer_withValidName_shouldUpdateCustomerName() {
 				
+		// Given
+		Customer testCustomer2 = new Customer("54321", "John", "Smith", 20);
+		
 		// Test
 		CustomerResponse response = service.createCustomerAge(testCustomer2);
 

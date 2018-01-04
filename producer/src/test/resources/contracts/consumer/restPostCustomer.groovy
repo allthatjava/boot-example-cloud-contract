@@ -1,4 +1,4 @@
-package contracts
+package contracts.consumer
 
 import org.springframework.cloud.contract.spec.Contract
 
@@ -17,7 +17,7 @@ Contract.make{
 		}
 		body("""
 		{
-			"custId": "12345",
+			"custId": "54321",
 			"firstName": "John",
 			"lastName": "Smith",
 			"age": 20
