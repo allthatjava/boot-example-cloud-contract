@@ -1,4 +1,4 @@
-package brian.boot.example.cloud.contract.consumer.repository;
+package brian.example.boot.cloud.contract.consumer.repository;
 
 import static org.junit.Assert.assertEquals;
 
@@ -11,6 +11,8 @@ import org.springframework.cloud.contract.stubrunner.spring.AutoConfigureStubRun
 import org.springframework.http.HttpStatus;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.web.client.HttpClientErrorException;
+
+import brian.example.boot.cloud.contract.consumer.repository.CustomerRepo;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = WebEnvironment.MOCK)

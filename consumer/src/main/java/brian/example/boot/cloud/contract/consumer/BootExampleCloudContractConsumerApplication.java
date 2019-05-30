@@ -1,4 +1,4 @@
-package brian.boot.example.cloud.contract.consumer;
+package brian.example.boot.cloud.contract.consumer;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

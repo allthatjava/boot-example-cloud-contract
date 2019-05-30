@@ -10,6 +10,7 @@ You can create a unit test with TestRestTemplate. The test should contain the pr
 * Write a Unit test - The example's Unit test expects
 	* Consumer application will send a HTTP request through GET method with RESTful URL and Header info
 	* Response should include a body that can be mapped with the data model Customer. So, the body should like this below
+	
 ```json
 { "customerId":"12345", "firstName":"John","lastName":"Smith","age":20 }
 ```
@@ -113,12 +114,14 @@ You can add the following annotation on the Class level. If you have an option w
 	* repositoryRoot
 	* username
 	* password
+	
 ```java
 @AutoConfigureStubRunner(ids="brian.boot.example.cloud.contract:producer:+:stubs:8080", workOffline=true)
 ```
 
 ### Use Properties for StubRunner
 @AutoConfigureStubRunner annotation is required to start the Mock Service but, all the options can be placed in application property file. You can use literals or system variables for the optional values.
+
 ```
 stubrunner:
     work-offline: false
@@ -134,6 +137,7 @@ If you don't want to specify the port number for the StubRunner, you can use ran
 
 * Remove the port from the ids option
 * Use StubFinder to pick up the random port
+
 ```java
 @Autowired
 StubFinder stubFinder;

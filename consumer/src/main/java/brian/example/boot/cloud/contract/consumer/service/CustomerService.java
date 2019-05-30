@@ -1,12 +1,12 @@
-package brian.boot.example.cloud.contract.consumer.service;
+package brian.example.boot.cloud.contract.consumer.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import brian.boot.example.cloud.contract.consumer.model.Customer;
-import brian.boot.example.cloud.contract.consumer.model.CustomerResponse;
-import brian.boot.example.cloud.contract.consumer.model.CustomerResponse.Status;
-import brian.boot.example.cloud.contract.consumer.repository.CustomerRepo;
+import brian.example.boot.cloud.contract.consumer.model.Customer;
+import brian.example.boot.cloud.contract.consumer.model.CustomerResponse;
+import brian.example.boot.cloud.contract.consumer.model.CustomerResponse.Status;
+import brian.example.boot.cloud.contract.consumer.repository.CustomerRepo;
 
 @Service
 public class CustomerService {

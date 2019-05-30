@@ -1,4 +1,4 @@
-package brian.boot.example.cloud.contract.consumer.service;
+package brian.example.boot.cloud.contract.consumer.service;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
@@ -12,10 +12,11 @@ import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
 import org.springframework.cloud.contract.stubrunner.spring.AutoConfigureStubRunner;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import brian.boot.example.cloud.contract.consumer.model.Additional;
-import brian.boot.example.cloud.contract.consumer.model.Customer;
-import brian.boot.example.cloud.contract.consumer.model.CustomerResponse;
-import brian.boot.example.cloud.contract.consumer.model.CustomerResponse.Status;
+import brian.example.boot.cloud.contract.consumer.model.Additional;
+import brian.example.boot.cloud.contract.consumer.model.Customer;
+import brian.example.boot.cloud.contract.consumer.model.CustomerResponse;
+import brian.example.boot.cloud.contract.consumer.model.CustomerResponse.Status;
+import brian.example.boot.cloud.contract.consumer.service.CustomerService;
 
 /**
  * This test uses fixed port number 9999 for StubRunner. The port and url are picked up from application.yml and they are used by CustomerService. 

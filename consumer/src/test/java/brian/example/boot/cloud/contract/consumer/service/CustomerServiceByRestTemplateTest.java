@@ -1,4 +1,4 @@
-package brian.boot.example.cloud.contract.consumer.service;
+package brian.example.boot.cloud.contract.consumer.service;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
@@ -20,10 +20,10 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import brian.boot.example.cloud.contract.consumer.model.Additional;
-import brian.boot.example.cloud.contract.consumer.model.Customer;
-import brian.boot.example.cloud.contract.consumer.model.CustomerResponse;
-import brian.boot.example.cloud.contract.consumer.model.CustomerResponse.Status;
+import brian.example.boot.cloud.contract.consumer.model.Additional;
+import brian.example.boot.cloud.contract.consumer.model.Customer;
+import brian.example.boot.cloud.contract.consumer.model.CustomerResponse;
+import brian.example.boot.cloud.contract.consumer.model.CustomerResponse.Status;
 
 /**
  * This test uses random port for StubRunner. Also, it uses TestRestTemplate to directly test against StubRunner

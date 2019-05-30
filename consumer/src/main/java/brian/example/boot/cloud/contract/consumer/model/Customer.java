@@ -1,4 +1,4 @@
-package brian.boot.example.cloud.contract.consumer.model;
+package brian.example.boot.cloud.contract.consumer.model;
 
 public class Customer {
 

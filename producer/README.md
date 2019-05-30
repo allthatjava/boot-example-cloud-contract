@@ -16,7 +16,8 @@ By the convention, consumer will send a Pull Request for their Contract. It shou
 
 ## Update build.gradle
 ### Dependencies
-To use Spring Cloud plugins, add following dependencies in buildscript{}. 
+To use Spring Cloud plugins, add following dependencies in buildscript{}.
+ 
 ```groovy
 buildscript {
 	ext {
@@ -33,6 +34,7 @@ buildscript {
 
 ### DependencyManagement
 Using the dependencyManager is recommended since some dependent libraries may have version issues.
+
 ```groovy
 dependencyManagement {
 	imports {
@@ -44,6 +46,7 @@ dependencyManagement {
 
 ### Contract Verifier
 Contract Verifier is only dependency you need to implement a producer application with Spring Cloud Contract.
+
 ```groovy
 dependencies {
 	testCompile('org.springframework.cloud:spring-cloud-starter-contract-verifier')
@@ -52,6 +55,7 @@ dependencies {
 
 ### Contract and Base Test Class
 Add baseClass. It can be multiple for each consumer/contract.
+
 ```groovy
 contracts{
 	baseClassForTests = 'brian.boot.example.cloud.contract.producer.ContractTest'
@@ -66,6 +70,7 @@ contracts{
 
 ### Set up for Publishing
 Also add `publishing{}` to publish ~stubs.jar to repository/artifactory
+
 ```groovy
 // To publish stubs.jar along the application jar
 publishing {
@@ -82,12 +87,14 @@ publishing {
 ## Generate Test Code
 Run following command to generate test case from contracts
 Verify the test cases are generated as you expected
+
 ```sh
 ./gradlew generateContractTests
 ```
 
 ## Run the test
 At the first time, it will fail. (Since you haven't implemented any code yet)
+
 ```sh
 ./gradlew test
 ```
@@ -103,6 +110,7 @@ To remove any failures from the automatically generated test class, now you shou
 To shared the generated stubs.jar with consumer, the best way is through repository/artifactory. Gradle task 'publishToMavenLocal' will do the job for you. 
 
 * You may need 'maven-publish' Gradle plugin to use the following command unless the build script already has it
+
 ```sh
 ./gradlew clean build publishToMavenLocal
 ```

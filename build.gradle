@@ -1,4 +1,4 @@
-group 'brian.boot.example.cloud'
+group 'brian.example.boot.cloud'
 version '1.0-SNAPSHOT'
 
 apply plugin: 'java'
